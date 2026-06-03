@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import TopHeader from './TopHeader';
 import GenerateModal from './GenerateModal';
 
-export default function AppLayout() {
+export default function AppLayout({ onLogout }) {
   const [collapsed, setCollapsed] = useState(window.innerWidth < 768);
   const [theme, setTheme] = useState('light');
   const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function AppLayout() {
         onGenerateClick={() => setIsGenerateModalOpen(true)}
       />
       <div className="main-wrapper">
-        <TopHeader toggleTheme={toggleTheme} theme={theme} toggleSidebar={() => setCollapsed(!collapsed)} />
+        <TopHeader toggleTheme={toggleTheme} theme={theme} toggleSidebar={() => setCollapsed(!collapsed)} onLogout={onLogout} />
         <main className="content-container">
           <Outlet />
         </main>

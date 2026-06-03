@@ -14,13 +14,14 @@ export default function Login({ onLogin }) {
 
     // Simulasi proses login ke server (dummy)
     setTimeout(() => {
-      if (email && password.length >= 6) {
+      const correctPassword = import.meta.env.VITE_APP_PASSWORD || 'rahasia123';
+      if (password === correctPassword) {
         onLogin(email);
       } else {
-        setError('Email atau password salah. (Hint: password minimal 6 karakter)');
+        setError('Password salah. Silakan coba lagi.');
         setIsLoading(false);
       }
-    }, 1200);
+    }, 600);
   };
 
   return (

@@ -1,6 +1,6 @@
-import { Search, Menu, HelpCircle, Settings, Grid, Sun, Moon } from 'lucide-react';
+import { Search, Menu, HelpCircle, Settings, Grid, Sun, Moon, LogOut } from 'lucide-react';
 
-export default function TopHeader({ toggleTheme, theme, toggleSidebar }) {
+export default function TopHeader({ toggleTheme, theme, toggleSidebar, onLogout }) {
   return (
     <header className="top-header">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -33,6 +33,9 @@ export default function TopHeader({ toggleTheme, theme, toggleSidebar }) {
         </button>
         <button className="icon-btn" title="Google apps">
           <Grid size={20} />
+        </button>
+        <button className="icon-btn" title="Log Out" onClick={onLogout}>
+          <LogOut size={20} />
         </button>
         <div style={{ width: '32px', height: '32px', background: 'var(--accent-color)', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', marginLeft: '8px', cursor: 'pointer' }}>
           M

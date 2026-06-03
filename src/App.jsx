@@ -17,10 +17,28 @@ function Placeholder({ title }) {
 }
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('auth') === 'true';
+  });
+
+  const handleLogin = () => {
+    localStorage.setItem('auth', 'true');
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth');
+    setIsAuthenticated(false);
+  };
+
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<AppLayout onLogout={handleLogout} />}>
           <Route index element={<Inbox />} />
           <Route path="unread" element={<Placeholder title="Unread Emails" />} />
           <Route path="compose" element={<Placeholder title="Compose Email" />} />
