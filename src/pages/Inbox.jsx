@@ -15,7 +15,8 @@ export default function Inbox() {
   }, [emails]);
 
   useEffect(() => {
-    const BACKEND_URL = `http://${window.location.hostname}:5000`;
+    const isProd = import.meta.env.PROD;
+    const BACKEND_URL = isProd ? '' : `http://${window.location.hostname}:5000`;
     
     const fetchEmails = () => {
       fetch(`${BACKEND_URL}/api/emails`)
@@ -48,7 +49,10 @@ export default function Inbox() {
     fetchEmails();
     
     // Connect to Socket.IO for real-time updates
-    const socket = io(`http://${window.location.hostname}:5000`);
+    const isProd = import.meta.env.PROD;
+    const socket = io(isProd ? undefined : `http://${window.location.hostname}:5000`, {
+      path: '/socket.io'
+    });
     
     socket.on('new_email', (newEmail) => {
       setEmails(prev => {
