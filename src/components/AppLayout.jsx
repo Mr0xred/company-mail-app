@@ -19,10 +19,21 @@ export default function AppLayout({ onLogout }) {
 
   return (
     <div className="app-container">
+      {/* Mobile Overlay */}
+      {!collapsed && window.innerWidth < 768 && (
+        <div 
+          className="sidebar-overlay" 
+          onClick={() => setCollapsed(true)}
+        ></div>
+      )}
+      
       <Sidebar 
         collapsed={collapsed} 
         toggleSidebar={() => setCollapsed(!collapsed)} 
         onGenerateClick={() => setIsGenerateModalOpen(true)}
+        onItemClick={() => {
+          if (window.innerWidth < 768) setCollapsed(true);
+        }}
       />
       <div className="main-wrapper">
         <TopHeader toggleTheme={toggleTheme} theme={theme} toggleSidebar={() => setCollapsed(!collapsed)} onLogout={onLogout} />

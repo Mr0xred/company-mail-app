@@ -4,7 +4,7 @@ import {
   Inbox, Star, Send, File, Clock, AlertOctagon, Trash2, Tag, ChevronDown, PenSquare
 } from 'lucide-react';
 
-export default function Sidebar({ collapsed, toggleSidebar, onGenerateClick }) {
+export default function Sidebar({ collapsed, toggleSidebar, onGenerateClick, onItemClick }) {
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
@@ -37,28 +37,28 @@ export default function Sidebar({ collapsed, toggleSidebar, onGenerateClick }) {
           </button>
         </div>
 
-        <NavLink to="/" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Inbox' : ''}>
+        <NavLink to="/" onClick={onItemClick} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Inbox' : ''}>
           <Inbox className="icon" size={18} />
           {!collapsed && <span>Inbox</span>}
           {!collapsed && unreadCount > 0 && <span style={{ marginLeft: 'auto', fontWeight: 'bold', fontSize: '12px' }}>{unreadCount}</span>}
         </NavLink>
         
-        <NavLink to="/starred" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Starred' : ''}>
+        <NavLink to="/starred" onClick={onItemClick} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Starred' : ''}>
           <Star className="icon" size={18} />
           {!collapsed && <span>Starred</span>}
         </NavLink>
         
-        <NavLink to="/snoozed" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Snoozed' : ''}>
+        <NavLink to="/snoozed" onClick={onItemClick} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Snoozed' : ''}>
           <Clock className="icon" size={18} />
           {!collapsed && <span>Snoozed</span>}
         </NavLink>
         
-        <NavLink to="/sent" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Sent' : ''}>
+        <NavLink to="/sent" onClick={onItemClick} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Sent' : ''}>
           <Send className="icon" size={18} />
           {!collapsed && <span>Sent</span>}
         </NavLink>
         
-        <NavLink to="/drafts" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Drafts' : ''}>
+        <NavLink to="/drafts" onClick={onItemClick} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} title={collapsed ? 'Drafts' : ''}>
           <File className="icon" size={18} />
           {!collapsed && <span>Drafts</span>}
         </NavLink>
