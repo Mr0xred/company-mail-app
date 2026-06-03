@@ -49,7 +49,6 @@ export default function Inbox() {
     fetchEmails();
     
     // Connect to Socket.IO for real-time updates
-    const isProd = import.meta.env.PROD;
     const socket = io(isProd ? undefined : `http://${window.location.hostname}:5000`, {
       path: '/socket.io'
     });
